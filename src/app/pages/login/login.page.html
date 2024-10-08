@@ -1,0 +1,45 @@
+<ion-content class="fullscreen"   style="--background: url('../../../assets/img/background.jpg') no-repeat center center / cover;">
+
+  <div class="login-content">
+
+    <div class="logo-container">
+      <img src="../../../assets/img/logo.png" class="logo" />
+      <h1>Ingresa tus datos</h1>
+    </div>
+
+
+    @if (errorMessage) {
+      <p style="text-align: center; color: red;">{{errorMessage}}</p>
+    }
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" type="submit" color="warning" [disabled]="loginForm.invalid">
+        Iniciar Sesion
+      </ion-button>
+    </form>
+    
+    <div style="display: flex; width: 80%; justify-content: space-around;">
+
+
+      <button mat-stroked-button  *ngFor="let user of users" expand="block" type="button"  (click)="autocompleCredentials(user.id)"  style="font-family: 'HalfTerm'; color: 'black'; margin-top: 20px; padding: 0 10px;" >
+        {{user.perfil}}
+      </button>
+  
+    
+
+    </div>
+
+    
+
+</div>
+</ion-content>

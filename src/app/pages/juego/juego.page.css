@@ -1,0 +1,75 @@
+ion-content {
+  --background: #f7f9fc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  background-image: url('../../../assets/img/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+
+.game-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  background-image: url('../../../assets/img/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .rectangular-button {
+    width: 60px;
+    height: 40px;
+    padding: 0; /* Remueve el padding */
+  }
+  
+  .full-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen llene el espacio sin distorsionarse */
+    margin: 0;
+    --padding: 0;
+    padding: 0;
+  }
+}
+
+
+ion-content {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100vh;
+  width: 100vw;
+}
+
+.flex-button {
+  /* flex: 1 1 45%;  
+  max-height: 33.33%;  */
+  width: 45%;
+  height: 30%;
+  padding: 0;
+  margin: 0;
+}
+
+.flex-button img {
+  
+  object-fit: cover;
+}

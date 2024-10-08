@@ -1,0 +1,7 @@
+{
+  "name": "ppsFaccini",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

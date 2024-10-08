@@ -1,0 +1,9 @@
+<ion-content fullscreen>
+  <ion-content class="ion-padding">
+    <ion-button expand="full" (click)="scanQRCode()">Escanear Código QR</ion-button>
+    
+    <!-- Aquí se mostrará el resultado del escaneo -->
+    <p *ngIf="scanResult">Resultado: {{ scanResult }}</p>
+  </ion-content>
+  
+</ion-content>

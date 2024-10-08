@@ -1,0 +1,55 @@
+/* Hacer que el fondo de la página sea negro */
+.container {
+  background-color: #C3F5F4;
+  margin: 0;
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Animación para el h1 superior (entra desde arriba) */
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animación para el h1 inferior (entra desde abajo) */
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+h1 {
+  color: black;
+  font-family: "HalfTerm"; 
+
+}
+
+/* Estilo para el h1 superior */
+h1.top-heading {
+  animation: slideDown 3s ease-out forwards;
+}
+
+/* Estilo para el h1 inferior */
+h1.bottom-heading {
+  animation: slideUp 3s ease-out forwards;
+}
+
+.animateSplash {
+  margin-top: 20px;
+}
