@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.traductor',
-  appName: 'Traductor',
+  appId: 'io.ionic.credito',
+  appName: 'Credito',
   webDir: 'www',
     // plugins: {
     //   SplashScreen: {

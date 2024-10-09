@@ -1,9 +1,32 @@
-<ion-content fullscreen>
-  <ion-content class="ion-padding">
-    <ion-button expand="full" (click)="scanQRCode()">Escanear Código QR</ion-button>
-    
-    <!-- Aquí se mostrará el resultado del escaneo -->
-    <p *ngIf="scanResult">Resultado: {{ scanResult }}</p>
-  </ion-content>
-  
-</ion-content>
+<ion-button (click)="toggleScanner()">
+  {{ isScanning ? 'Detener Escaneo' : 'Iniciar Escaneo' }}
+</ion-button>
+
+
+<div *ngIf="isLoading" class="loading-overlay">
+  <ion-spinner name="crescent"></ion-spinner>
+</div>
+
+<zxing-scanner
+  *ngIf="isScanning"
+  [formats]="allowedFormats"
+  (scanSuccess)="onCodeResult($event)"
+  [torch]="true"
+  [tryHarder]="true"
+  [device]="selectedDevice"
+  style="width: 100%; height: 100%;"
+></zxing-scanner>
+
+<div *ngIf="user">
+  Correo: {{ user['correo'] }}
+  Perfil: {{user['perfil']}}
+</div>
+
+
+<div class="credit-display">
+  Créditos acumulados: {{ credits }}
+</div>
+
+<ion-button (click)="clearCredits()">
+  Limpiar créditos
+</ion-button>

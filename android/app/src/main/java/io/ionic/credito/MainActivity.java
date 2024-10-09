@@ -1,4 +1,4 @@
-package io.ionic.traductor;
+package io.ionic.credito;
 
 import com.getcapacitor.BridgeActivity;
 

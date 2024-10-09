@@ -1,7 +1,7 @@
 export interface UserInterface {
-    email:string,
-    username:string,
-    //name: string,
-    //lastName: string,
-    password: string
+    uid: string,
+    id:string,
+    correo:string,
+    perfil: string,
+    credito: number
 }

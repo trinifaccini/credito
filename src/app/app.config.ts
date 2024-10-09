@@ -9,6 +9,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 
 
@@ -30,6 +31,7 @@ export const appConfig = {
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
     importProvidersFrom(IonicModule.forRoot()), // Proveer HttpClientModule
+    importProvidersFrom(ZXingScannerModule), // Proveer HttpClientModule
     importProvidersFrom(HttpClientModule), provideAnimationsAsync('noop'), provideAnimationsAsync('noop'), // Proveer HttpClientModule
     provideFirestore(() => getFirestore())
 

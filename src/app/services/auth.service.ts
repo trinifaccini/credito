@@ -1,56 +1,58 @@
 import { inject, Injectable, signal } from '@angular/core';
-import {
-  Auth, 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  user,
-  updateProfile,
-  signOut,
-  UserCredential} from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, signOut, user } from '@angular/fire/auth';
+import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { Observable, from } from 'rxjs';
 import { UserInterface } from '../models/user.interface';
-
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-
-
+  
   firebaseAuth = inject(Auth);
+  firestore = inject(Firestore);
   user$ = user(this.firebaseAuth);
   currentUserSig = signal<UserInterface | null | undefined>(undefined);
 
-  register(email: string, username: string, password: string): Observable<UserCredential> {
-    const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password)
-      .then(response => {
-        updateProfile(response.user, { displayName: username });
-        return response;
+  login(email: string, password: string): Observable<void> {
+    const promise = signInWithEmailAndPassword(this.firebaseAuth, email, password)
+      .then((userCredential) => {
+        // Después de iniciar sesión, obtener la información del usuario en Firestore
+        return this.getUserData(userCredential.user.uid);
+      })
+      .then((userData) => {
+        this.currentUserSig.set(userData);
       });
     return from(promise);
   }
-  
 
-  login(email:string, password:string,): Observable<void> {
-
-    //firebase retorna promesas, pero los convertimos a observables
-
-    const promise = signInWithEmailAndPassword(this.firebaseAuth, email, password)
-    .then(() => {})
-
-    return from(promise)
-
-
-
-  }
-
-  logout() : Observable<void> {
+  logout(): Observable<void> {
     const promise = signOut(this.firebaseAuth)
-    .then(() => {})
-
-    return from(promise)
+      .then(() => {
+        this.currentUserSig.set(null);
+      });
+    return from(promise);
   }
 
-  
+  // Método para obtener el usuario desde Firestore
+  private async getUserData(uid: string): Promise<UserInterface | null> {
+
+    const userDocRef = doc(this.firestore, `usuarios/${uid}`);
+    const userDoc = await getDoc(userDocRef);
+    
+    if (userDoc.exists()) {
+      const data = userDoc.data();
+      return {
+        uid: uid,
+        id: data['id'],
+        correo: data['correo'],
+        perfil: data['perfil'],
+        credito: data['credito']
+      } as UserInterface;
+    } else {
+      console.warn('No se encontró el documento de usuario en Firestore');
+      return null;
+    }
+  }
 }
