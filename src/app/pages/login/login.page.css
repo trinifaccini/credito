@@ -1,39 +1,24 @@
 .login-content {
-    /* background-image: url('../../../assets/img/background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;  */
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    text-align: center;
-  
-    .logo-container {
-      padding-top: 40px;
-      margin-bottom: 40px;
-  
-      .logo {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        margin-bottom: 10px;
-      }
-  
-      h1 {
-        font-family: 'Poppins', sans-serif;
-        font-size: 24px;
-        font-weight: bold;
-        color: #000;
-        letter-spacing: 0.05em;
-        font-family: "HalfTerm";
-      }
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: start;
+  height: 100vh
+}
+
+h1 {
+  margin-top: 100px;
+  font-family: 'Bebas';
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  letter-spacing: 0.05em;
+}
   
     form {
       width: 80%;
-      font-family: "HalfTerm";
+      font-family: "Bebas";
       
       ion-item {
         --background: rgb(245, 249, 250);
@@ -43,14 +28,14 @@
         ion-label {
           color: #000;
           font-weight: bold;
-          font-family: "HalfTerm";
+          font-family: "Bebas";
 
         }
   
         ion-input {
           --placeholder-color: rgba(0, 0, 0, 0.479);
           color: black;
-          font-family: "HalfTerm";
+          font-family: "Bebas";
 
         }
       }
@@ -61,5 +46,6 @@
       }
     }
   
-  }
-  
+ion-label {
+  font-family: 'Bebas';
+}

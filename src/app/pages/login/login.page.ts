@@ -12,6 +12,17 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 
+import { addIcons } from 'ionicons';
+import {  logoReddit, logoOctocat, logoSnapchat, trendingUp } from 'ionicons/icons';
+
+
+addIcons({
+  'snapchat': logoSnapchat,
+  'reddit': logoReddit,
+  'octocat': logoOctocat,
+  'arrow': trendingUp
+});
+
 const authReponses = {
   //"invalid-email": "No existe un usuario registrado con esa dirección",
   //"missing-password": "No existe un usuario registrado con esa dirección",
@@ -25,14 +36,16 @@ const users = [
     username: "pperez12",
     email: "admin@admin.com",
     password: "111111",
-    perfil: "ADMINITRADOR"
+    perfil: "ADMINITRADOR",
+    logo: 'snapchat'
   },
   {
     id: 2,
     username: "martinapok",
     email: "invitado@invitado.com",
     password: "222222",
-    perfil: "INVITADO"
+    perfil: "INVITADO",
+    logo: 'reddit'
 
   },
   {
@@ -40,8 +53,8 @@ const users = [
     username: "tomi_acu",
     email: "usuario@usuario.com",
     password: "333333",
-    perfil: "USUARIO"
-
+    perfil: "USUARIO",
+    logo: 'octocat'
   }
 ]
 

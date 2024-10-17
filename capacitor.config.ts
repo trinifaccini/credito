@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.credito',
+  appId: 'io.ionic.traductor',
   appName: 'Credito',
   webDir: 'www',
     // plugins: {

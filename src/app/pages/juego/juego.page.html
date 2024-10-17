@@ -1,32 +1,46 @@
-<ion-button (click)="toggleScanner()">
-  {{ isScanning ? 'Detener Escaneo' : 'Iniciar Escaneo' }}
-</ion-button>
+<ion-content class="fullscreen"  style="--background: url('../../../assets/img/background.jpg') no-repeat center center / cover;">
+
+  <ion-button (click)="toggleScanner()">
+    {{ isScanning ? 'Detener Escaneo' : 'Iniciar Escaneo' }}
+  </ion-button>
 
 
-<div *ngIf="isLoading" class="loading-overlay">
-  <ion-spinner name="crescent"></ion-spinner>
-</div>
+  <div *ngIf="isLoading" class="loading-overlay">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
 
-<zxing-scanner
-  *ngIf="isScanning"
-  [formats]="allowedFormats"
-  (scanSuccess)="onCodeResult($event)"
-  [torch]="true"
-  [tryHarder]="true"
-  [device]="selectedDevice"
-  style="width: 100%; height: 100%;"
-></zxing-scanner>
+  <zxing-scanner
+    *ngIf="isScanning"
+    [formats]="allowedFormats"
+    (scanSuccess)="onCodeResult($event)"
+    [torch]="true"
+    [tryHarder]="true"
+    [device]="selectedDevice"
+    style="width: 100%; height: 50%;"
+  ></zxing-scanner>
 
-<div *ngIf="user">
-  Correo: {{ user['correo'] }}
-  Perfil: {{user['perfil']}}
-</div>
+  <div *ngIf="user && !isScanning">
+    <h4>
+      Correo: {{ user['correo'] }}
+    </h4>
+    <h4>
+      Perfil: {{user['perfil']}}
+    </h4>
+
+    <h4>
+      Créditos acumulados: {{ credits }}
+    </h4>
+  </div>
 
 
-<div class="credit-display">
-  Créditos acumulados: {{ credits }}
-</div>
+  <ion-button (click)="clearCredits()">
+    Limpiar créditos
+  </ion-button>
 
-<ion-button (click)="clearCredits()">
-  Limpiar créditos
-</ion-button>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-button  type="button" color="danger" (click)="logout()">
+      <ion-icon name="close"></ion-icon>   
+    </ion-button>
+ </ion-fab>
+</ion-content>

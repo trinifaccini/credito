@@ -6,6 +6,16 @@ import { CommonModule } from '@angular/common';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserInterface } from 'src/app/models/user.interface';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
+import { addIcons } from 'ionicons';
+import { close } from 'ionicons/icons';
+
+
+addIcons({
+  'close' : close
+});
 
 @Component({
   selector: 'app-qr-scanner',
@@ -18,6 +28,7 @@ import { UserInterface } from 'src/app/models/user.interface';
 export class GamePage implements OnInit {
   
   authService = inject(AuthService);
+  router = inject(Router);
   allowedFormats = [BarcodeFormat.QR_CODE];
   scannedCodes = new Set<string>(); 
   credits = 0;
@@ -135,13 +146,16 @@ export class GamePage implements OnInit {
     return creditValues[code] || 0;
   }
 
+
   async showAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      header,
-      message,
-      buttons: ['OK'],
+    Swal.fire({
+      heightAuto: false,
+      title: header,
+      text: message,
+      icon: 'info', // Puedes cambiar el icono según lo que necesites: 'success', 'error', 'warning', 'info'
+      timer: 5000, // Opción para cerrar automáticamente después de 3 segundos
+    
     });
-    await alert.present();
   }
 
 
@@ -166,6 +180,15 @@ export class GamePage implements OnInit {
   
     await Promise.all(deletePromises);
     console.log('Créditos eliminados para el usuario:', userId);
+  }
+
+  logout() {
+    this.user = null;
+    this.isLoading = false;
+    this.isScanning= false;
+    this.credits = 0;
+    this.authService.logout();
+    this.router.navigateByUrl('login');
   }
   
 }
