@@ -4,48 +4,61 @@
   align-items: center;
   text-align: center;
   justify-content: start;
-  height: 100vh
+  flex-wrap: nowrap;
+  height: 100vh;
+  padding-top: 50px
 }
 
 h1 {
-  margin-top: 100px;
+  margin-top: 20px;
   font-family: 'Bebas';
-  font-size: 24px;
+  font-size: 40px;
   font-weight: bold;
   color: #000;
   letter-spacing: 0.05em;
 }
   
-    form {
-      width: 80%;
+form {
+  width: 80%;
+  font-family: "Bebas";
+  
+  ion-item {
+    --background: rgb(245, 249, 250);
+    border-radius: 8px;
+    margin-bottom: 20px;
+
+    ion-label {
+      color: #000;
+      font-weight: bold;
       font-family: "Bebas";
-      
-      ion-item {
-        --background: rgb(245, 249, 250);
-        border-radius: 8px;
-        margin-bottom: 20px;
 
-        ion-label {
-          color: #000;
-          font-weight: bold;
-          font-family: "Bebas";
-
-        }
-  
-        ion-input {
-          --placeholder-color: rgba(0, 0, 0, 0.479);
-          color: black;
-          font-family: "Bebas";
-
-        }
-      }
-  
-      ion-button {
-        color: warn;
-        border-radius: 8px;
-      }
     }
+
+    ion-input {
+      --placeholder-color: rgba(0, 0, 0, 0.479);
+      color: black;
+      font-family: "Bebas";
+
+    }
+  }
+
+  ion-button {
+    color: warning;
+    border-radius: 8px;
+  }
+}
   
 ion-label {
   font-family: 'Bebas';
+}
+
+.buttons {
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: center;
+  
 }

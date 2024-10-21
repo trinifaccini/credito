@@ -15,46 +15,23 @@
 
 }
 
-/* Animación para el h1 superior (entra desde arriba) */
-@keyframes slideDown {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Animación para el h1 inferior (entra desde abajo) */
-@keyframes slideUp {
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 h1 {
   color: black;
   font-family: "Bebas"; 
+  text-align: center;
 
 }
 
 /* Estilo para el h1 superior */
 h1.top-heading {
-  font-size: 24px;
+  font-size: 40px;
   animation: scaleText 3s ease-in-out forwards;
   transform-origin: center;
 }
 
 /* Estilo para el h1 inferior */
 h1.bottom-heading {
-  font-size: 24px;
+  font-size: 40px;
   animation: scaleText 3s ease-in-out forwards;
   transform-origin: center;
 }

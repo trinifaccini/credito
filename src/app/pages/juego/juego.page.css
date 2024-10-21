@@ -53,4 +53,25 @@ ion-content {
 
 h4 {
   font-family: "Bebas";
+  font-size: 30px;
+
+}
+
+h1 {
+  font-size: 50px;
+  background-color: wheat;
+  padding: 0px 5px;
+}
+
+
+.fixed-bottom {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%; /* O el tamaño que prefieras */
+  padding: 10px; /* Espaciado interno, opcional */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra opcional para que destaque */
+  z-index: 1000; /* Asegura que esté sobre otros elementos */
+  justify-content: space-around;
 }

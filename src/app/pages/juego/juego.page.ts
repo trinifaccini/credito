@@ -162,24 +162,42 @@ export class GamePage implements OnInit {
   async clearCredits(): Promise<void> {
     if (!this.user) return;
 
-    const userId = this.user['id'];
-    const creditsCollection = collection(this.firestore, 'creditos');
-    const userCreditsQuery = query(creditsCollection, where('id', '==', userId));
+    Swal.fire({
+      heightAuto: false,
+      title: "CUIDADO",
+      text: "¿Estás seguro que querés borrar tus créditos?'",
+      icon: 'warning', // Puedes cambiar el icono según lo que necesites: 'success', 'error', 'warning', 'info'
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No'
+      }).then(async (result) => {
+      if (result.value) {
+        const userId = this.user['id'];
+        const creditsCollection = collection(this.firestore, 'creditos');
+        const userCreditsQuery = query(creditsCollection, where('id', '==', userId));
+    
+        const querySnapshot = await getDocs(userCreditsQuery);
+        const deletePromises = querySnapshot.docs.map(doc => deleteDoc(doc.ref));
 
-    const querySnapshot = await getDocs(userCreditsQuery);
-    const deletePromises = querySnapshot.docs.map(doc => deleteDoc(doc.ref));
+        // Actualiza el campo `credito` en la colección `usuarios` a 0
+        const userDocRef = doc(this.firestore, `usuarios/${this.user['uid']}`);
+        await updateDoc(userDocRef, { credito: 0 });
 
+        // Actualiza el valor local de `credits` y muestra el mensaje
+        this.credits = 0;
+        await this.showAlert('Créditos limpiados', 'Tus créditos han sido restablecidos a 0.');
+      
+        await Promise.all(deletePromises);
+        console.log('Créditos eliminados para el usuario:', userId);
 
-    // Actualiza el campo `credito` en la colección `usuarios` a 0
-    const userDocRef = doc(this.firestore, `usuarios/${this.user['uid']}`);
-    await updateDoc(userDocRef, { credito: 0 });
+      } else {
+          return false;
+      }
+  });
 
-    // Actualiza el valor local de `credits` y muestra el mensaje
-    this.credits = 0;
-    await this.showAlert('Créditos limpiados', 'Tus créditos han sido restablecidos a 0.');
-  
-    await Promise.all(deletePromises);
-    console.log('Créditos eliminados para el usuario:', userId);
+    
   }
 
   logout() {

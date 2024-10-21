@@ -2,7 +2,8 @@
 
   <div class="login-content">
 
-    <h1>INGRESÁ TUS DATOS</h1>
+    <h1>INGRESÁ </h1>
+    <h1>TUS DATOS</h1>
 
     @if (errorMessage) {
       <p style="text-align: center; color: red;">{{errorMessage}}</p>
@@ -20,14 +21,14 @@
       </ion-item>
 
       
-      <div style="display: flex; width: 100%; justify-content: space-around;">
+      <div class="buttons" >
 
-        <ion-button color="warning" *ngFor="let user of users" (click)="autocompleCredentials(user.id-1)">
-          <ion-icon [name]="user.logo"></ion-icon>
+        <ion-button  color="warning" *ngFor="let user of users" (click)="autocompleCredentials(user.id-1)">
+          <ion-icon style="padding: 10px 0px; font-size: 2rem;" [name]="user.logo"></ion-icon>
         </ion-button>
 
-        <ion-button expand="block" type="submit" color="success" [disabled]="loginForm.invalid" >
-          <ion-icon name="trending-up"></ion-icon>
+        <ion-button  type="submit" color="success" [disabled]="loginForm.invalid" >
+          <ion-icon style="padding: 10px 0px; font-size: 2rem;" name="trending-up"></ion-icon>
         </ion-button>
 
       </div>
